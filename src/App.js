@@ -6,6 +6,31 @@ import WeatherTable from './weatherTable.js';
 import MapCard from './mapCard.js';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: true
+    };
+  }
+
+  renderInputForm(){
+    return(
+      <div className='inputForm'>
+        <InputForm />
+      </div>
+    )
+  }
+
+  renderWeatherMapAndTable(data){
+    if (data){
+      return(
+        <div>
+          <WeatherTable />
+          <MapCard />
+        </div>
+      )
+    }
+  }
   render() {
     return (
       <div className="App">
@@ -13,9 +38,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-      <InputForm />
-      <WeatherTable />
-      <MapCard />
+        {this.renderInputForm()}        
+        {this.renderWeatherMapAndTable(this.state.data)}        
       </div>
     );
   }
